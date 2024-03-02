@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" />
+<head>
+<meta charset="UTF-8" />
+<title>result</title>
+</head>
+<body>
+  <h1>전송결과</h1>
+  
+  <th:block th:if="${result!=null}">
+    <p th:text="'결과 = '+${result}"></p>
+  </th:block>
+  
+  <p><a th:href="@{/sendData}">이전페이지</a></p>
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" />
+<head>
+<meta charset="UTF-8" />
+<title>t_output</title>
+</head>
+<body>
+  <h1>타임리프와 템플릿 활용</h1>
+  
+  <a th:href="@{/}">홈으로 ...</a>
+  
+  <h2>th:text와 th:utext의 차이</h2>
+  
+  <h3 th:utext="${testStr}"></h3>
+  
+  <hr />
+  
+  <h2>Map 데이터 출력</h2>
+  
+  <h3>이름 : <span th:text="${me.name}"></span></h3>
+  <h3>나이 : <span th:text="${me.age}"></span></h3>
+  <h3>주소 : <span th:text="${me.address}"></span></h3>
+  
+  <hr />
+  
+  <h2>DTO 데이터 출력-1</h2>
+  <h3>이름 : <span th:text="${dto.name}"></span></h3>
+  <h3>나이 : <span th:text="${dto.age}"></span></h3>
+  <h3>주소 : <span th:text="${dto.address}"></span></h3>
+  
+  <hr />
+  
+  <h2>DTO 데이터 출략-2</h2>
+  <!-- th:block은 태그이다. -->
+  <th:block th:object="${dto}">
+    <h3>이름 : <span th:text="*{name}"></span></h3>
+    <h3>나이 : <span th:text="*{age}"></span></h3>
+    <h3>주소 : <span th:text="*{address}"></span></h3>
+  </th:block>
+  
+  <script th:inline="javascript">
+  const msg = [[${message}]];
+  if(msg!==null){
+	  alert(msg);
+  }
+  
+  </script>
+</body>
+</html>

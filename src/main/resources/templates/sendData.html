@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" />
+<head>
+<meta charset="UTF-8" />
+<title>타임리프 폼태그</title>
+</head>
+<body>
+<h1>클라이언트->서버로 데이터 전송</h1>
+<h2>a 태그 활용</h2>
+<p>전송한 데이터 : 10, 20</p>
+<a th:href="@{/a_send(num1=10, num2=20)}">전송하기</a>
+
+<hr />
+<!-- 
+  하나의 파일에 똑같은 컨트롤 name이 있으면 콤마(,)가 붙어서 넘어갈 수 있다.
+  2024-02-27 이것땜에 엄청 고생함
+ -->
+
+<h2>Post 방식으로 전송</h2>
+<form th:action="@{/dtoSend}" method="post">
+	<fieldset>
+		<legend>내용입력</legend>
+		<ul>
+			<li><input type="text" name="name" /></li>
+			<li><input type="number" name="age" /></li>
+			<li><input type="text" name="address" /></li>
+		</ul>
+	</fieldset>
+	<p><button>확인</button></p>
+</form>
+
+<hr />
+
+<h2>Get 방식으로 전송</h2>
+<form th:action="@{/noneDtoSend}" method="get">
+	<fieldset>
+		<legend>내용입력</legend>
+		<ul>
+			<li><input type="text" name="u_name" /></li>
+			<li><input type="number" name="u_age" /></li>
+			<li><input type="text" name="u_address" /></li>
+		</ul>
+	</fieldset>
+	<p><button>확인</button></p>
+</form>
+</body>
+</html>
