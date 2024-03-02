@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" />
+<head>
+<meta charset="UTF-8" />
+<title>Board</title>
+</head>
+<body>
+<h1>친구들</h1>
+
+<h2>[[${list}]]</h2>
+
+<hr />
+
+<h2 th:text="${list}"></h2>
+
+<hr />
+
+<h2>th:with를 이용한 변수선언</h2>
+<div th:with="height=${180}, weight=${70}">
+  <h3 th:text="${height+weight}"></h3>
+</div>
+</body>
+</html>

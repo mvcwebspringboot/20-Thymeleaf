@@ -2,16 +2,11 @@
 <html lang="ko" xmlns:th="http://www.thymeleaf.org" />
 <head>
 <meta charset="UTF-8" />
-<title>t_output</title>
+<title>타임리프</title>
 </head>
 <body>
-  <h1>타임리프와 템플릿 활용</h1>
-  
+  <h1>타임리프 템플릿 활용</h1>  
   <a th:href="@{/}">홈으로 ...</a>
-  
-  <h2>th:text와 th:utext의 차이</h2>
-  
-  <h3 th:utext="${testStr}"></h3>
   
   <hr />
   
@@ -38,12 +33,7 @@
     <h3>주소 : <span th:text="*{address}"></span></h3>
   </th:block>
   
-  <script th:inline="javascript">
-  const msg = [[${message}]];
-  if(msg!==null){
-	  alert(msg);
-  }
-  
+
   </script>
 </body>
 </html>

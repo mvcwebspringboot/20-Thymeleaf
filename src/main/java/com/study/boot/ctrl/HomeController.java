@@ -2,6 +2,7 @@ package com.study.boot.ctrl;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
@@ -27,11 +28,17 @@ public class HomeController {
 
 	@GetMapping("/")
 	public String home() {
-		return "home";
+		return "index";
 	}
 	
-	@GetMapping("/intro")
+	//예제10
+	@GetMapping("/10-basic")
 	public String intro(Model model) {
+		
+		//문제 - 문자열을 뷰로 전송하여 타임리프로 출력하시오.
+		model.addAttribute("msg", "Hello, World~!");
+		
+		//문제 - 현재날짜시간을 뷰로 전송하여 타임리프로 출력하시오.
 		Calendar cal = Calendar.getInstance();
 		Date date = cal.getTime();
 		
@@ -39,15 +46,19 @@ public class HomeController {
 		String now = sdf.format(date);
 		
 		model.addAttribute("now", now);
-		return "intro";
+		
+		model.addAttribute("htmlcode", "<h3>아기공룡둘리</h3>");//th:text, th:utext 비교
+		
+		model.addAttribute("message", "서버로부터의 메세지");
+		return "10-basic";
 	}
 	
-	
-	@GetMapping("/t_output")
+
+	//예제20
+	@GetMapping("/20-object")
 	public ModelAndView t_output() {
 		
 		ModelAndView mv = new ModelAndView();		
-		mv.addObject("testStr", "<h3>h3로 만든 문자열</h3>");
 		
 		Map<String, String> me = new HashMap<String, String>(); 
 		me.put("name", "홍길동");
@@ -64,17 +75,26 @@ public class HomeController {
 		//자바스크립트에서 출력 테스트
 		mv.addObject("message", "서버로부터의 메세지");
 		
-		mv.setViewName("t_output");
+		mv.setViewName("20-object");
 		return mv;
 	}
-	 
-	@GetMapping("/t_control")
+	
+	
+	
+	//예제30
+	@GetMapping("/30-control")
 	public ModelAndView t_control() {
 		ModelAndView mv = new ModelAndView();
 		
 		mv.addObject("data", "이 문자열이 보입니다.");
 		mv.addObject("age",12);		
 		
+		//th:each 로 출력
+		List<String> friends = Arrays.asList("둘리","또치","도우너","마이콜");
+		mv.addObject("friends",friends);
+		
+		
+		//<th:block> 태그로 출력
 		List<DataDTO> list = new ArrayList<DataDTO>();
 		for(int i=0;i<5;i++) {
 			DataDTO dto = new DataDTO();
@@ -85,13 +105,14 @@ public class HomeController {
 		}
 		
 		mv.addObject("list",list);		
-		mv.setViewName("t_control");		
+		mv.setViewName("30-control");		
 		return mv;
 	}
 	
-	@GetMapping("/sendData")
+	//예제40
+	@GetMapping("/40-form")
 	public String sendData() {
-		return "sendData";
+		return "40-form";
 	}
 	
 	@GetMapping("/a_send")
@@ -106,6 +127,21 @@ public class HomeController {
 		return mv;
 	}
 	
+	@GetMapping("/noneDtoSend")
+	public String noneDtoSend(@RequestParam("u_name") String username, @RequestParam("u_age") int age, @RequestParam("u_address") String address, Model model) {
+		DataDTO dto = new DataDTO();
+		dto.setName(username);
+		dto.setAge(age);
+		dto.setAddress(address);
+		
+		String result = dto.toString();
+		log.info("result = "+result);
+		
+		model.addAttribute("result", result);
+		
+		return "result";
+	}
+	 
 	@PostMapping("/dtoSend")
 	public String dtoSend(@Valid DataDTO dto, BindingResult bindingResult, Model model) {
 		log.info("noneDtoSend~!!!!!");
@@ -124,21 +160,6 @@ public class HomeController {
 		return "result";
 	}
 	
-	@GetMapping("/noneDtoSend")
-	public String noneDtoSend(@RequestParam("u_name") String username, @RequestParam("u_age") int age, @RequestParam("u_address") String address, Model model) {
-		DataDTO dto = new DataDTO();
-		dto.setName(username);
-		dto.setAge(age);
-		dto.setAddress(address);
-		
-		String result = dto.toString();
-		log.info("result = "+result);
-		
-		model.addAttribute("result", result);
-		
-		return "result";
-	}
-	 
 }
 
 

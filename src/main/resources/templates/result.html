@@ -2,15 +2,19 @@
 <html lang="ko" xmlns:th="http://www.thymeleaf.org" />
 <head>
 <meta charset="UTF-8" />
-<title>result</title>
+<title>타임리프</title>
 </head>
 <body>
-  <h1>전송결과</h1>
+  <h1>타임리프 템플릿 활용</h1>  
+  <a th:href="@{/}">홈으로 ...</a>
+  
+  <hr />
+  <h2>전송결과</h2>
   
   <th:block th:if="${result!=null}">
     <p th:text="'결과 = '+${result}"></p>
   </th:block>
   
-  <p><a th:href="@{/sendData}">이전페이지</a></p>
+  <p><a th:href="@{/40-form}">이전페이지</a></p>
 </body>
 </html>
