@@ -33,7 +33,7 @@ public class HomeController {
 	
 	//예제10
 	@GetMapping("/10-basic")
-	public String intro(Model model) {
+	public String basic(Model model) {
 		
 		//문제 - 문자열을 뷰로 전송하여 타임리프로 출력하시오.
 		model.addAttribute("msg", "Hello, World~!");
@@ -56,7 +56,7 @@ public class HomeController {
 
 	//예제20
 	@GetMapping("/20-object")
-	public ModelAndView t_output() {
+	public ModelAndView object() {
 		
 		ModelAndView mv = new ModelAndView();		
 		
@@ -83,11 +83,11 @@ public class HomeController {
 	
 	//예제30
 	@GetMapping("/30-control")
-	public ModelAndView t_control() {
+	public ModelAndView control() {
 		ModelAndView mv = new ModelAndView();
 		
 		mv.addObject("data", "이 문자열이 보입니다.");
-		mv.addObject("age",12);		
+		
 		
 		//th:each 로 출력
 		List<String> friends = Arrays.asList("둘리","또치","도우너","마이콜");
@@ -111,7 +111,7 @@ public class HomeController {
 	
 	//예제40
 	@GetMapping("/40-form")
-	public String sendData() {
+	public String form() {
 		return "40-form";
 	}
 	
@@ -158,6 +158,15 @@ public class HomeController {
 		model.addAttribute("result", result);
 		
 		return "result";
+	}
+	
+	
+	//예제50 - layout
+	@GetMapping("/50-page")
+	public void page(Model model) {
+		model.addAttribute("name", "둘리");
+		model.addAttribute("age", 7);
+		model.addAttribute("address", "서울시 도봉구 쌍문동");
 	}
 	
 }

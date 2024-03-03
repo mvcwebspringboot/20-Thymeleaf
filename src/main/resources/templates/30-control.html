@@ -25,12 +25,15 @@
   <hr />
   
   <h2>th:switch</h2>
+  <p>25/10 = [[${25/10}]]</p>
   
-  <th:block th:switch="${age/10}">
-    <p th:case="0">10대 이하 입니다.</p>
-    <p th:case="1">10대 입니다.</p>
-    <p th:case="2">20대 입니다.</p>
-  </th:block>
+  <div th:with="age=${25}">
+	  <th:block th:switch="${age/10}">
+	    <p th:case="0">10대 이하 입니다.</p>
+	    <p th:case="1">10대 입니다.</p>
+	    <p th:case="2">20대 입니다.</p>
+	  </th:block>
+  </div>
   
   <hr />
   
@@ -41,13 +44,44 @@
   
   <hr />
   
+  <!--
+    th:each 를 처리할 때 status 키워드를 추가하여 몇가지 정보를 출력할 수 있다.
+      index - 0부터 카운트
+      count - 1부터 카운트
+      size - 리스트의 크기
+      first,      last,      odd,      even - 참/거짓(Boolean)
+      ? 를 이용한 이항 또는 삼항처리
+   -->
+  <h2>th:each 반복문 처리</h2>
+  <ul>
+    <li th:each="friend,status : ${friends}">[[${friend}]] - [[${status.index}]]</li>
+    <hr />
+    <li th:each="friend,status : ${friends}">[[${friend}]] - [[${status.count}]]</li>
+    <hr />
+    <li th:each="friend,status : ${friends}">[[${friend}]] - [[${status.size}]]</li>
+    <hr />
+    <li th:each="friend,status : ${friends}">[[${friend}]] - [[${status.first}]]</li>
+    <hr />
+    <li th:each="friend,status : ${friends}">[[${friend}]] - [[${status.last}]]</li>
+    <hr />
+    <li th:each="friend,status : ${friends}">[[${friend}]] - [[${status.odd}]]</li>
+    <hr />
+    <li th:each="friend,status : ${friends}">[[${friend}]] - [[${status.even}]]</li>
+  </ul>
+  
+  
+  <hr />
+  
   <h2>th:block 태그로 반복문 처리</h2>
   <th:block th:nuless="${#lists.isEmpty(list)}">
-    <th:block th:each="dto:${list}"> 
+    <th:block th:each="dto,status:${list}"> 
 	    <p>
 	      <span>[[${dto.name}]]</span>,
 	      <span>[[${dto.age}]]</span>,
 	      <span>[[${dto.address}]]</span>
+	      <span th:text="${status.odd} ? '-- odd 홀수'"></span>
+	      <span th:text="${status.even} ? '--even 짝수'"></span>	      
+        <span th:text="${status.odd} ? '-- odd 홀수' : '--even 짝수'"></span>
 	    </p>    
     </th:block>
   </th:block>

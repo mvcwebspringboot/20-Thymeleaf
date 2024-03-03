@@ -46,19 +46,23 @@
 	<hr />
 	
 	<h2>변수선언</h2>	
-	<p>변수를 선언할 때는 th:with 를 이용한다. 여러개일 때는 콤마(,)로 구분한다.</p>
+	<p>
+	 1. 변수선언 태그로 감싼 블럭범위 안에서만 유효하다
+	 2. 변수를 선언할 때는 th:with 를 이용한다. 
+	 3. 여러개일 때는 콤마(,)로 구분한다.
+	</p>
 	
 	<div th:with="height=${180}, weight=${70}">
 	  <h3 th:text="'height + weigth = '+${height+weight}"></h3>
 	  <h3>height + weigth = [[${height+weight}]]</h3>
 	</div>	
 	
-  <!-- 자바스크립트 활용 -->
+  <!-- /* 자바스크립트 활용 
   <script th:inline="javascript">
 	  const msg = [[${message}]];
 	  if(msg!==null){
 	    alert(msg);
 	  }
-  </script>
+  </script>*/-->
 </body>
 </html>

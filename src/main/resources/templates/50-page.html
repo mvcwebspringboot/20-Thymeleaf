@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="ko" 
+  xmlns:th="http://www.thymeleaf.org" 
+  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" 
+  layout:decorate="~{layout/layout.html}">
+<head>
+<meta charset="UTF-8" />
+<title>타임리프</title>
+</head>
+<body>
+  <div layout:fragment="sect">
+  	<h1>이름 : [[${name}]]</h1>
+  	<h2>나이 : [[${age}]]</h2>
+  	<h2>주소 : [[${address}]]</h2>
+  </div>
+  
+  <script th:inline="javascript" layout:fragment="script">
+    const name = [[${name}]];
+    const age = [[${age}]];
+    const address = [[${address}]];
+    
+    console.log(`이름:${name}, 나이:${age}, 주소:${address}`);
+    
+  </script>
+</body>
+</html>
